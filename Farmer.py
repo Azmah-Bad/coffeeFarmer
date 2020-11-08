@@ -3,11 +3,11 @@ import time
 import sys
 
 INPUT_BOX = (525, 755)
-EMOJI = (1076, 662)
+EMOJI = (1043, 662)
 SELECT_EMOJI = (704, 478)
 VOTE_EMOJI = (490, 684)
 
-COMMANDS = {"prep": "$course", "ready": "$ready", "start": "$start"}
+COMMANDS = {"prep": "course", "ready": "$ready", "start": "$start"}
 
 
 def write(cmd):
@@ -16,6 +16,7 @@ def write(cmd):
     :param cmd:
     :return:
     """
+    print(f"writing {cmd}")
     pyautogui.moveTo(*INPUT_BOX)
     pyautogui.click()
 
@@ -24,6 +25,7 @@ def write(cmd):
 
 
 def selectEmoji():
+    print("selecting emoji")
     pyautogui.moveTo(*EMOJI)
     pyautogui.click()
 
@@ -36,6 +38,7 @@ def vote():
     vote for the first emoji
     :return:
     """
+    print("voting")
     pyautogui.moveTo(*VOTE_EMOJI)
     pyautogui.click()
 
@@ -54,5 +57,16 @@ def farm():
     time.sleep(3)
 
     write("start")
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        times = sys.argv[1]
+        for _ in range(times):
+            farm()
+            time.sleep(5)
+    else:
+        farm()
+
+
 
 
